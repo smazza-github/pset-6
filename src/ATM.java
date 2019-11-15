@@ -22,10 +22,10 @@ public class ATM {
         this.in = new Scanner(System.in);
         
         try {
-			this.bank = new Bank();
-		} catch (IOException e) {
-			// cleanup any resources (i.e., the Scanner) and exit
-		}
+	    this.bank = new Bank();
+	} catch (IOException e) {
+	    // cleanup any resources (i.e., the Scanner) and exit
+	}
     }
     
     /*
