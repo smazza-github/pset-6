@@ -203,12 +203,14 @@ If a withdrawal request fails to meet these requirements, your ATM must print an
 
 Transfer requests must meet the following requirements.
 * the destination account must exist
+* the destination acocunt must differ from the origin account
 * the amount must be greater than $0.00
 * the amount must not cause the destination account balance to exceed the field maximum
 * the amount must be less than or equal to account balance
 
 If a transfer request fails to meet these requirements, your ATM must print an applicable status message.
 * Transfer rejected. Destination account not found.
+* Transfer rejected. Destination account matches origin.
 * Transfer rejected. Amount must be greater than $0.00.
 * Transfer rejected. Amount would cause destination balance to exceed $999,999,999,999.99.
 * Transfer rejected. Insufficient funds.
