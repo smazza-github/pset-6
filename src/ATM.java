@@ -21,10 +21,24 @@ public class ATM {
     public ATM() {
         in = new Scanner(System.in);
 
-        activeAccount = new BankAccount(1234, 123456789, 0, new User("Ryan", "Wilson"));
+        try {
+
+            this.bank = new Bank();
+
+        } catch (IOException e) {
+
+          in.close();
+
+        }
     }
 
     public void startup() {
+
+          long accountNo;
+          int pin;
+
+          boolean createAccount = false;
+
         System.out.println("Welcome to the AIT ATM!\n");
 
         while (true) {
