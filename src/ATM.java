@@ -364,7 +364,23 @@ public class ATM {
 
                   } else if (withdrawStatus == ATM.SUCCESS) {
 
-                  	.
+                    int depositStatus = transferAccount.deposit(amount);
+
+                    if (depositStatus == ATM.OVERFLOW) {
+
+                      System.out.println("\nTransfer rejected. Amount would cause destination balance to exceed $999,999,999,999.99.\n");
+
+                    } else if (depositStatus == ATM.SUCCESS) {
+
+                        System.out.println("\nTransfer accepted.\n");
+                        bank.update(activeAccount);
+                        bank.save();
+                    }
+                }
+            } else {
+            	System.out.println("\nTransfer rejected. Destination account not found.\n");
+            }
+        }
 
 ////////////////////////////////////////////////////////////////////////////////
 
