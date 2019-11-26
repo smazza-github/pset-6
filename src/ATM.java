@@ -193,12 +193,29 @@ public class ATM {
 
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
-
-
     public boolean isValidLogin(long accountNo, int pin) {
-        return accountNo == activeAccount.getAccountNo() && pin == activeAccount.getPin();
+
+        boolean validity = false;
+
+        try {
+
+           validity = bank.login(accountNo, pin) != null ? true : false;
+
+        } catch (Exception e) {
+
+           validity = false;
+
+        }
+
+        return valid;
+
     }
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
     public int getSelection() {
         System.out.println("[1] View balance");
