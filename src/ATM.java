@@ -42,10 +42,12 @@ public class ATM {
         System.out.println("Welcome to the AIT ATM!\n");
 
         while (true) {
+
             System.out.print("Account No.: ");
             String accountNum = in.nextLong();
 
             if (accountNum.isEmpty()) {
+
               accountNo = 0;
 
             } else if (accountNum.charAt(0) == '+') {
@@ -66,6 +68,38 @@ public class ATM {
               accountNo = 0;
 
             }
+
+////////////////////////////////////////////////////////////////////////////////
+
+                if (!(createAccount)) {
+
+                  System.out.print("PIN        : ");
+                  String accountPin = in.nextLine
+
+                  if (accountPin.isEmpty()) {
+
+                    pin = 0;
+
+                  } else if (accountPin.matches("[0-9]+")) {
+
+                    pin = Integer.parseInt(accountPin);
+
+                  } else if (accountPin.matches("-")) {
+
+                    pin = 0;
+
+                  } else if (!(accountPin.contains("-")) && !(accountPin.matches("[0-9]+"))) {
+
+                    pin = 0;
+      
+                  } else {
+
+                    pin = 0;
+
+                  }
+
+///////////////////////////////////////////////////////////////////////////////
+
 
 
             System.out.print("PIN        : ");
