@@ -44,7 +44,7 @@ public class BankAccount {
         return currency.format(balance);
     }
 
-    public User getAccocuntHolder() {
+    public User getAccountHolder() {
 
       return accountHolder;
 
