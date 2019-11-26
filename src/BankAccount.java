@@ -14,6 +14,15 @@ public class BankAccount {
 
     }
 
+    public BankAccount(int pin, long accountNo, User accountHolder) {
+
+        this.pin = pin;
+        this.accountNo = accountNo;
+        this.balance = 0.0;
+        this.accountHolder = accountHolder;
+    }
+
+
     public int getPin() {
 
       return pin;
@@ -26,10 +35,11 @@ public class BankAccount {
 
     }
 
-    public double getBalance() {
+    public String getBalance() {
 
-      return balance;
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
 
+        return currency.format(balance);
     }
 
     public User getAccocuntHolder() {
@@ -38,19 +48,42 @@ public class BankAccount {
 
     }
 
-    public void deposit(double amount) {
+    public int deposit(double amount) {
 
-      balance = balance + amount;
+        if (amount <= 0) {
 
+            return ATM.INVALID;
+
+        } else if ((amount + balance) > 999999999999.99){
+
+        	return ATM.OVERFLOW;
+
+        } else {
+            balance = balance + amount;
+        }
+
+        return ATM.SUCCESS;
     }
 
-    public void withdraw(double amount) {
+    public int withdraw(double amount) {
 
-      balance = balance - amount;
+        if (amount <= 0) {
 
+            return ATM.INVALID;
+
+        } else if (amount > balance) {
+
+            return ATM.INSUFFICIENT;
+
+        } else {
+
+            balance = balance - amount;
+            
+        }
+
+        return ATM.SUCCESS;
     }
-  }
-  
+
     ////////////////////////////////////////////////////////////////////////////
     //                                                                        //
     // Refer to the Simple ATM tutorial to fill in the details of this class. //
