@@ -290,8 +290,8 @@ public class ATM {
       double amount = 0;
       boolean validAmount = true;
 
-    System.out.print("\nEnter amount: ");
-    double amount = in.nextDouble();
+      System.out.print("\nEnter amount: ");
+      double amount = in.nextDouble();
 
     try {
 
@@ -304,9 +304,11 @@ public class ATM {
 
     }
 
-    if (status == ATM.INVALID) {
+    if (validAmount) {
 
-        int status = activeAccount.withdraw(amount);
+    int status = activeAccount.withdraw(amount);
+
+        if (status == ATM.INVALID) {
 
         System.out.println("\nWithdrawal rejected. Amount must be greater than $0.00.\n");
 
