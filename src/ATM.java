@@ -238,10 +238,27 @@ public class ATM {
         System.out.println("\nCurrent balance: " + activeAccount.getBalance());
     }
 
+////////////////////////////////////////////////////////////////////////////////
+
     public void deposit() {
 
+      double amount = 0;
+      boolean validAmount = true;
+
       System.out.print("\nEnter amount: ");
-      double amount = in.nextDouble();
+
+      try {
+
+        amount = in.nextDouble();
+
+      } catch(Exception e) {
+
+        validAmount = false;
+        in.nextLine();
+
+      }
+
+      if (validAmount) {
 
       int status = activeAccount.deposit(amount);
 
@@ -254,6 +271,8 @@ public class ATM {
         System.out.println("\nDeposit accepted.\n");
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
     public void withdraw() {
 
