@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+
 public class BankAccount {
 
     private int pin;
@@ -78,7 +80,7 @@ public class BankAccount {
         } else {
 
             balance = balance - amount;
-            
+
         }
 
         return ATM.SUCCESS;
