@@ -5,6 +5,8 @@ public class ATM {
 
     private Scanner in;
     private BankAccount activeAccount;
+    private User newUser;
+    private Bank bank;
 
     public static final int VIEW = 1;
     public static final int DEPOSIT = 2;
