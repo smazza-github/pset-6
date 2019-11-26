@@ -8,58 +8,41 @@ public class BankAccount {
     private User accountHolder;
 
     public BankAccount(int pin, long accountNo, double balance, User accountHolder) {
-
-      this.pin = pin;
-      this.accountNo = accountNo;
-      this.balance = balance;
-      this.accountHolder = accountHolder;
-
+        this.pin = pin;
+        this.accountNo = accountNo;
+        this.balance = balance;
+        this.accountHolder = accountHolder;
     }
-
     public BankAccount(int pin, long accountNo, User accountHolder) {
-
         this.pin = pin;
         this.accountNo = accountNo;
         this.balance = 0.0;
         this.accountHolder = accountHolder;
     }
 
-
     public int getPin() {
-
-      return pin;
-
+        return pin;
     }
 
     public long getAccountNo() {
-
-      return accountNo;
-
+        return accountNo;
     }
 
     public String getBalance() {
-
         NumberFormat currency = NumberFormat.getCurrencyInstance();
 
         return currency.format(balance);
     }
 
     public User getAccountHolder() {
-
-      return accountHolder;
-
+        return accountHolder;
     }
 
     public int deposit(double amount) {
-
         if (amount <= 0) {
-
             return ATM.INVALID;
-
         } else if ((amount + balance) > 999999999999.99){
-
         	return ATM.OVERFLOW;
-
         } else {
             balance = balance + amount;
         }
@@ -68,19 +51,12 @@ public class BankAccount {
     }
 
     public int withdraw(double amount) {
-
         if (amount <= 0) {
-
             return ATM.INVALID;
-
         } else if (amount > balance) {
-
             return ATM.INSUFFICIENT;
-
         } else {
-
             balance = balance - amount;
-
         }
 
         return ATM.SUCCESS;
@@ -99,7 +75,7 @@ public class BankAccount {
      */
 
     private String formatBalance() {
-    	return String.format("%.2f", balance);
+        return String.format("%.2f", balance);
     }
 
     /*
@@ -116,4 +92,5 @@ public class BankAccount {
             accountHolder.serialize() +
             formatBalance();
     }
+
 }

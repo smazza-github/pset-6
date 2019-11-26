@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class ATM {
 
     private Scanner in;
-    // private BankAccount activeAccount
     private User newUser;
     private Bank bank;
+    private BankAccount activeAccount;
 
     public static final int VIEW = 1;
     public static final int DEPOSIT = 2;
@@ -49,7 +49,7 @@ public class ATM {
         while (true) {
 
             System.out.print("Account No.: ");
-            String accountNum = in.nextLong();
+            String accountNum = in.nextLine();
 
             if (accountNum.isEmpty()) {
 
@@ -79,7 +79,7 @@ public class ATM {
                 if (!(createAccount)) {
 
                   System.out.print("PIN        : ");
-                  String accountPin = in.nextLine
+                  String accountPin = in.nextLine();
 
                   if (accountPin.isEmpty()) {
 
@@ -123,7 +123,7 @@ public class ATM {
                 }
             } else {
 
-                if (accountNo = -1 && pin == -1) {
+                if (accountNo == -1 && pin == -1) {
 
                     shutdown();
 
@@ -148,21 +148,21 @@ public class ATM {
 
                 System.out.print("Pin: ");
 
-                if (in.has.NextInt()) {
+                if (in.hasNextInt()) {
 
                   pin = in.nextInt();
                   in.nextLine();
 
                 if (pin <= 9999 && pin >= 1000) {
 
-                    newUser = newUser(firstName, lastName);
+                    newUser = new User(firstName, lastName);
 
                     BankAccount newAccount = bank.createAccount(pin, newUser);
                     System.out.print("\nThank you. Your account number is ");
                     System.out.println("Please login to access your newly created account.");
 
                     bank.update(newAccount);
-                    bank.save()
+                    bank.save();
 
                     createAccount = false;
 
@@ -175,7 +175,7 @@ public class ATM {
                 }
               } else {
 
-                  in.nextline()
+                  in.nextLine();
                   System.out.println("\nYour pin must be numeric.\n");
                   createAccount = false;
 
@@ -212,7 +212,7 @@ public class ATM {
 
         }
 
-        return valid;
+        return validity;
 
     }
 
@@ -282,21 +282,25 @@ public class ATM {
         bank.update(activeAccount);
         bank.save();
     }
+
 } else {
 
   System.out.println("\nDeposit rejected. Enter valid amount.\n");
 
+ }
 }
 
 
 
-    public void withdraw() {
+
+
+   public void withdraw() {
 
       double amount = 0;
       boolean validAmount = true;
 
       System.out.print("\nEnter amount: ");
-      double amount = in.nextDouble();
+      amount = in.nextDouble();
 
     try {
 
@@ -325,12 +329,13 @@ public class ATM {
 
         System.out.println("\nWithdrawal accepted.\n");
 
+      }
     } else {
 
         System.out.println("\nWithdrawl rejected. Enter valid amount.\n");
-
     }
   }
+
 
 
 
@@ -382,8 +387,11 @@ public class ATM {
                         bank.save();
                     }
                 }
+
             } else {
+
             	System.out.println("\nTransfer rejected. Destination account not found.\n");
+
             }
         }
 
@@ -396,6 +404,7 @@ public class ATM {
 
         System.out.println("\nGoodbye!");
         System.exit(0);
+
     }
 
     public static void main(String[] args) {
