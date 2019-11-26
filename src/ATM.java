@@ -148,15 +148,50 @@ public class ATM {
                   pin = in.nextInt();
                   in.nextLine();
 
-                if ()
+                if (pin <= 9999 && pin >= 1000) {
+
+                    newUser = newUser(firstName, lastName);
+
+                    BankAccount newAccount = bank.createAccount(pin, newUser);
+                    System.out.print("\nThank you. Your account number is ");
+                    System.out.println("Please login to access your newly created account.");
+
+                    bank.update(newAccount);
+                    bank.save()
+
+                    createAccount = false;
+
+                } else {
+
+                  System.out.println("\nYour pin must be between 1000 and 9999.\n");
+
+                  createAccount = false;
+
                 }
+              } else {
+
+                  in.nextline()
+                  System.out.println("\nYour pin must be numeric.\n");
+                  createAccount = false;
+
+              }
+            } else {
+
+                   System.out.println("\nYour last name must be between 1 and 30 characters long.");
+                   createAccount = false;
             }
+          } else {
+
+                    System.out.println("\nYour first name must be between 1 and 20 characters long.");
+                    createAccount = false;
 
           }
-        }
+       }
     }
+  }
 
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 
