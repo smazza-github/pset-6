@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class ATM {
 
     private Scanner in;
-    private BankAccount activeAccount;
+    // private BankAccount activeAccount
     private User newUser;
     private Bank bank;
 
@@ -21,7 +21,7 @@ public class ATM {
     public static final int OVERFLOW = 3;
 
     /* constructor and methods not shown */
-}
+
 
     public ATM() {
         in = new Scanner(System.in);
@@ -74,7 +74,7 @@ public class ATM {
 
             }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
                 if (!(createAccount)) {
 
@@ -103,7 +103,7 @@ public class ATM {
 
                   }
 
-///////////////////////////////////////////////////////////////////////////////
+
 
             if (isValidLogin(accountNo, pin)) {
 
@@ -196,7 +196,7 @@ public class ATM {
   }
 
 
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 
     public boolean isValidLogin(long accountNo, int pin) {
 
@@ -216,7 +216,7 @@ public class ATM {
 
     }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public int getSelection() {
 
@@ -237,13 +237,13 @@ public class ATM {
         }
       }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public void showBalance() {
         System.out.println("\nCurrent balance: " + activeAccount.getBalance());
     }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public void deposit() {
 
@@ -288,7 +288,7 @@ public class ATM {
 
 }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public void withdraw() {
 
@@ -332,7 +332,7 @@ public class ATM {
     }
   }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public void transfer() {
 
@@ -387,7 +387,7 @@ public class ATM {
             }
         }
 
-////////////////////////////////////////////////////////////////////////////////
+
 
     public void shutdown() {
         if (in != null) {
