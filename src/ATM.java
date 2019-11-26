@@ -266,21 +266,47 @@ public class ATM {
 
         System.out.println("\nDeposit rejected. Amount must be greater than $0.00.\n");
 
+      } else if (status == ATM.OVERFLOW) {
+
+        System.out.print("\nDeposit rejected. ");
+        System.out.println("Amount would cause balance to exceed $999,999,999,999.99.\n");
+
       } else if (status == ATM.SUCCESS) {
 
         System.out.println("\nDeposit accepted.\n");
+        bank.update(activeAccount);
+        bank.save();
     }
+} else {
+
+  System.out.println("\nDeposit rejected. Enter valid amount.\n");
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
     public void withdraw() {
 
+      double amount = 0;
+      boolean validAmount = true;
+
     System.out.print("\nEnter amount: ");
     double amount = in.nextDouble();
 
-    int status = activeAccount.withdraw(amount);
+    try {
+
+      amount = in.nextDouble();
+
+    } catch (Exception e) {
+
+      validAmount = false;
+      in.nextLine();
+
+    }
+
     if (status == ATM.INVALID) {
+
+        int status = activeAccount.withdraw(amount);
 
         System.out.println("\nWithdrawal rejected. Amount must be greater than $0.00.\n");
 
@@ -293,6 +319,8 @@ public class ATM {
         System.out.println("\nWithdrawal accepted.\n");
     }
   }
+
+////////////////////////////////////////////////////////////////////////////////
 
     public void shutdown() {
         if (in != null) {
