@@ -91,7 +91,7 @@ public class ATM {
                   } else if (!(accountPin.contains("-")) && !(accountPin.matches("[0-9]+"))) {
 
                     pin = 0;
-      
+
                   } else {
 
                     pin = 0;
@@ -100,17 +100,15 @@ public class ATM {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-
-
-            System.out.print("PIN        : ");
-            int pin = in.nextInt();
-
             if (isValidLogin(accountNo, pin)) {
-                System.out.println("\nHello, again, " + activeAccount.getAccountHolder().getFirstName() + "!\n");
 
                 boolean validLogin = true;
+
+                System.out.println("\nHello, again, " + activeAccount.getAccountHolder().getFirstName() + "!\n");
+
                 while (validLogin) {
                     switch (getSelection()) {
+
                         case VIEW: showBalance(); break;
                         case DEPOSIT: deposit(); break;
                         case WITHDRAW: withdraw(); break;
@@ -119,14 +117,49 @@ public class ATM {
                     }
                 }
             } else {
+
                 if (accountNo = -1 && pin == -1) {
+
                     shutdown();
+
                 } else {
+
                     System.out.println("\nInvalid account number and/or PIN.\n");
                 }
             }
+
+        } else {
+
+          System.out.print("\nFirst Name: ");
+            String firstName = in.nextLine();
+
+            if (firstName.length() > 0 && firstName.length() <= 20) {
+
+                System.out.print("Last Name: ");
+                 String lastName = in.nextLine();
+
+
+            if (lastName.length() > 0 && lastName.length() <= 30) {
+
+                System.out.print("Pin: ");
+
+                if (in.has.NextInt()) {
+
+                  pin = in.nextInt();
+                  in.nextLine();
+
+                if ()
+                }
+            }
+
+          }
         }
     }
+
+
+
+
+
 
     public boolean isValidLogin(long accountNo, int pin) {
         return accountNo == activeAccount.getAccountNo() && pin == activeAccount.getPin();
