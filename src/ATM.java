@@ -43,7 +43,30 @@ public class ATM {
 
         while (true) {
             System.out.print("Account No.: ");
-            long accountNo = in.nextLong();
+            String accountNum = in.nextLong();
+
+            if (accountNum.isEmpty()) {
+              accountNo = 0;
+
+            } else if (accountNum.charAt(0) == '+') {
+
+              accountNo = 0;
+              createAccount = true;
+
+            } else if (accountNum.matches("[0-9]+")) {
+
+              accountNo = Long.parseLong(accountNum);
+
+            } else if (!(accountNum.contains("-")) && !(accountNum.matches("[0-9]+"))) {
+
+              accountNo = -1;
+
+            } else {
+
+              accountNo = 0;
+
+            }
+
 
             System.out.print("PIN        : ");
             int pin = in.nextInt();
