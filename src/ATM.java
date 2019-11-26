@@ -213,18 +213,26 @@ public class ATM {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
     public int getSelection() {
+
         System.out.println("[1] View balance");
         System.out.println("[2] Deposit money");
         System.out.println("[3] Withdraw money");
         System.out.println("[4] Logout");
 
+        if (in.hasNextInt()) {
+
         return in.nextInt();
-    }
+
+        } else {
+
+        in.nextLine();
+        return 6;
+
+        }
+      }
+
+////////////////////////////////////////////////////////////////////////////////
 
     public void showBalance() {
         System.out.println("\nCurrent balance: " + activeAccount.getBalance());
