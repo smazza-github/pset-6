@@ -11,10 +11,10 @@ public class ATM {
     public static final int VIEW = 1;
     public static final int DEPOSIT = 2;
     public static final int WITHDRAW = 3;
-    public static final int LOGOUT = 4;
+    public static final int LOGOUT = 5;
     public static final int FIRST_NAME_WIDTH = 20;
     public static final int LAST_NAME_WIDTH = 30;
-
+    public static final int TRANSFER = 4;
     public static final int INVALID = 0;
     public static final int INSUFFICIENT = 1;
     public static final int SUCCESS = 2;
@@ -39,10 +39,10 @@ public class ATM {
 
     public void startup() {
 
-          long accountNo;
-          int pin;
+        long accountNo;
+        int pin;
 
-          boolean createAccount = false;
+        boolean createAccount = false;
 
         System.out.println("Welcome to the AIT ATM!\n");
 
@@ -54,6 +54,10 @@ public class ATM {
             if (accountNum.isEmpty()) {
 
               accountNo = 0;
+
+            } else if (accountNum.equals("-1")) {
+
+              accountNo = -1;
 
             } else if (accountNum.charAt(0) == '+') {
 
@@ -75,7 +79,6 @@ public class ATM {
             }
 
 
-
                 if (!(createAccount)) {
 
                   System.out.print("PIN        : ");
@@ -84,6 +87,10 @@ public class ATM {
                   if (accountPin.isEmpty()) {
 
                     pin = 0;
+
+                  } else if (accountPin.equals("-1")) {
+
+                    pin = -1;
 
                   } else if (accountPin.matches("[0-9]+")) {
 
@@ -108,6 +115,7 @@ public class ATM {
             if (isValidLogin(accountNo, pin)) {
 
                 boolean validLogin = true;
+                activeAccount = bank.login(accountNo, pin);
 
                 System.out.println("\nHello, again, " + activeAccount.getAccountHolder().getFirstName() + "!\n");
 
@@ -117,10 +125,12 @@ public class ATM {
                         case VIEW: showBalance(); break;
                         case DEPOSIT: deposit(); break;
                         case WITHDRAW: withdraw(); break;
-                        case LOGOUT: validLogin = false; break;
+                        case TRANSFER: transfer(); break;
+                        case LOGOUT: bank.update(activeAccount); bank.save(); validLogin = false; in.nextLine(); break;
                         default: System.out.println("\nInvalid selection.\n"); break;
                     }
                 }
+
             } else {
 
                 if (accountNo == -1 && pin == -1) {
@@ -159,7 +169,8 @@ public class ATM {
 
                     BankAccount newAccount = bank.createAccount(pin, newUser);
                     System.out.print("\nThank you. Your account number is ");
-                    System.out.println("Please login to access your newly created account.");
+                    System.out.println(newAccount.getAccountNo() + ".");
+                    System.out.println("Please login to access your newly created account.\n");
 
                     bank.update(newAccount);
                     bank.save();
@@ -216,14 +227,13 @@ public class ATM {
 
     }
 
-
-
     public int getSelection() {
 
         System.out.println("[1] View balance");
         System.out.println("[2] Deposit money");
         System.out.println("[3] Withdraw money");
-        System.out.println("[4] Logout");
+        System.out.println("[4] Transfer money");
+        System.out.println("[5] Logout");
 
         if (in.hasNextInt()) {
 
@@ -237,13 +247,10 @@ public class ATM {
         }
       }
 
-
-
     public void showBalance() {
+
         System.out.println("\nCurrent balance: " + activeAccount.getBalance());
     }
-
-
 
     public void deposit() {
 
@@ -290,21 +297,17 @@ public class ATM {
  }
 }
 
-
-
-
-
    public void withdraw() {
 
       double amount = 0;
       boolean validAmount = true;
 
       System.out.print("\nEnter amount: ");
-      amount = in.nextDouble();
 
     try {
 
       amount = in.nextDouble();
+      in.nextLine();
 
     } catch (Exception e) {
 
@@ -349,13 +352,14 @@ public class ATM {
       System.out.print("Enter amount                : ");
       double amount = in.nextDouble();
 
+
           if (bank.getAccount(secondedAccountNumber) == null) {
 
               	validAccount = false;
 
               }
 
-          if (validAccount) {
+          if (validAccount == true) {
 
               	BankAccount transferAccount = bank.getAccount(secondedAccountNumber);
               	int withdrawStatus = activeAccount.withdraw(amount);
